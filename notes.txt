@@ -1,0 +1,81 @@
+std (standard library):
+- module std:;prelude
+- The prelude is the list of things that Rust automatically imports into every rust program
+
+
+1:
+- variable for storing the user input
+- String::new() = a function that returns a new instance of String
+- String is a type provided by the standard library that is growable
+- The syntax :: in the ::new() is an associated function of a String type
+- An associated function is a function that is implemented on a type, in this case String type
+- This new() function creates a new, empty string 
+- In full, this line has created a mutable variable that is 
+  currently bound to a new, empty instance of a String
+
+2:
+- .read_line(&mut guess) calls the read_line method on the
+  standard input handle to get input from user
+- We're also passing &mut guess as the argument to read_line
+  to tell it what string to store the user input in
+- The & indicates that this argument is reference, which 
+  gives you a way to let multiple parts of your code access
+  one piece of data without needing to copu that data into
+  memory multiple times
+
+3: Result Type:
+- The Result enum in Rust is a type that represent the RESULT of an operation
+  that can be either succeed or fail
+- read_line puts whatever the user enters into the string
+  we pass to it, but also returns a Result value.
+- Result is an enumeration (enum) which is a type that can be in one of 
+  multiple possible states
+- We call each possible states as "variant"
+- The purpose of these Result types is to encode 
+  error-handling information
+- Result's variant are Ok and Err.
+- The Ok variant indicates the operation wa successful, and 
+  inside Ok is the succesfully generated value
+- The Err variant means the operation falied, and Err 
+  contains information about how or why the opearation falied
+
+4: Generating random number:
+- rand::thread_rng function that gives us the particular random number
+  generator we're going to use
+
+5: Comparing the Guess to the Secret Number:
+- The Ordering type is another enum and has the variants Less, Greated, Equal
+- These are the three outcomes that are possible when you compare two values
+- The cpm method compares two values and can be called on anythong that can be compared
+- It takes reference to whatever you want to compare with
+- A match expression is made up of arms
+- An arms consist of pattern to match against, and the code that should be run if the value given to match
+  gits that arm's pattern
+
+6: Convert string into number:
+- We already have guess as a variable name, but helpfully Rust allows us to SHADOW the previous value 
+  of guess with a new one
+- SHADOWING lets us reuse the guess variable name rather than forcing us to create two unique variables
+  , such as guess_str and guess
+- The trim method on a String instance will eliminate all the whitespace at the beginning and the end
+  which we must do in order to compare the string to u32, which can only contain numerical data
+- The parse method on strings converts a string to another type
+- We need to tell Rust the exact number type we want by using let guess: u32.
+- The colon (:) afre guess tells Rust we'll annotate the variable's type
+- The parse method will only work on characters that can logically be converted into numbers and so
+  can easily cause errors
+- Parse method returns a Result type, much as the read_line method does
+
+6: Handling Invalid Input:
+- To further refine the game behavior, rather than crashing if user input non numerical as a guess,
+  so the user can continue crashing
+- We switch from an expect call to a match expression to move from crashing on error to handling the error
+- if parse is able to successfully turn the string into a number, it will return an Ok value
+ that contains the resultant number
+- That Ok value will match the first arm's pattern, and the match expression will just return
+  the num vakye that parse produced and put inside the Ok value
+- That value will end up in guess variable
+- The Err(_) underscore is a catchcall value; In this example, we're sayinh we want to match all
+  Err values, no matter what information they have inside them.
+- So the program will execute the second arm's code, continue, which tells the program to go to the next
+  iteration of the loop
