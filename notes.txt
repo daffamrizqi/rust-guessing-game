@@ -4,6 +4,8 @@ std (standard library):
 - Prelude module that is automatically included at the beginning of every rust program.
 - It contains a collection of commonly used types and functions that can be used without having
   to import them explicitly
+- This includes basic types like 'String', 'Vec', and 'Option' exact
+- Prelude is like a toolbox that is always avaiable to use
 
 
 1:
