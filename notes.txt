@@ -1,6 +1,9 @@
 std (standard library):
 - module std:;prelude
 - The prelude is the list of things that Rust automatically imports into every rust program
+- Prelude module that is automatically included at the beginning of every rust program.
+- It contains a collection of commonly used types and functions that can be used without having
+  to import them explicitly
 
 
 1:
